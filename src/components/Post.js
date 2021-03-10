@@ -6,32 +6,32 @@ import { useSelector, useDispatch } from "react-redux";
 import Navbar from "./Navbar";
 
 const Post = (props) => {
-  //   const dispatch = useDispatch();
-  //   function handleLikes() {
-  //     let token = localStorage.getItem("token");
-  //     fetch("http://localhost:3000/likes", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `BEARER ${token}`,
-  //       },
-  //       body: JSON.stringify({
-  //         like: {
-  //           post_id: props.post.id,
-  //         },
-  //       }),
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //         localStorage.token = token;
-  //         dispatch({
-  //           type: "SET_LIKES",
-  //           likes: data.likes,
-  //         });
-  //         // props.history.push("/home");
-  //       });
-  //   }
+  const dispatch = useDispatch();
+  function handleLikes() {
+    let token = localStorage.getItem("token");
+    fetch("http://localhost:3000/likes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `BEARER ${token}`,
+      },
+      body: JSON.stringify({
+        like: {
+          post_id: props.post.id,
+        },
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        localStorage.token = token;
+        dispatch({
+          type: "SET_LIKES",
+          likes: data.likes,
+        });
+        // props.history.push("/home");
+      });
+  }
 
   return (
     <div>
@@ -44,7 +44,7 @@ const Post = (props) => {
         <div className="image-row">
           <div className="icon-div">
             <Avatar>
-              <FavoriteBorderIcon />
+              <FavoriteBorderIcon onClick={handleLikes} />
             </Avatar>
             <Avatar>
               <ModeCommentIcon />
