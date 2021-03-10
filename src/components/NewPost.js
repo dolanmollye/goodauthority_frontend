@@ -32,9 +32,15 @@ const NewPost = (props) => {
     })
       .then((response) => response.json())
       .then((data) => {
+        const newUser = user;
+        newUser.posts.push(data);
         dispatch({
           type: "SET_POST",
           value: data,
+        });
+        dispatch({
+          type: "SET_USER",
+          user: newUser,
         });
         props.history.push("/profile");
       });

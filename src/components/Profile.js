@@ -7,6 +7,7 @@ import Post from "./Post";
 const Profile = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const posts = useSelector((state) => state.posts);
 
   return (
     <div>

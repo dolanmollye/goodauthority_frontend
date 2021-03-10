@@ -37,7 +37,6 @@ const Login = (props) => {
   };
 
   const authResponse = (data) => {
-    console.log(data);
     if (data.error) {
       alert(data.error);
     } else {

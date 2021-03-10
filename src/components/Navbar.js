@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
@@ -12,6 +12,7 @@ const Navbar = () => {
       type: "SET_USER",
       user: {},
     });
+    // props.history.push("/login");
   };
 
   return (

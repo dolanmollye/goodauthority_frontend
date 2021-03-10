@@ -15,23 +15,23 @@ const App = () => {
   const post = useSelector((state) => state.post);
 
   useEffect(() => {
-    let token = localStorage.getItem("token");
-    if (token) {
-      console.log(token);
-      fetch("http://localhost:3000/api/v1/profile", {
-        // method: "GET",
-        headers: { "Authorization": `BEARER ${token}` },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          dispatch({
-            type: "SET_USER",
-            user: data.user,
-          });
-        });
-    }
+    fetchUser();
   }, []);
+
+  const fetchUser = () => {
+    const token = localStorage.token;
+    fetch("http://localhost:3000/api/v1/profile", {
+      method: "GET",
+      headers: { Authorization: `BEARER ${token}` },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch({
+          type: "SET_USER",
+          user: data.user,
+        });
+      });
+  };
 
   return (
     <div className="app">

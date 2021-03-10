@@ -28,8 +28,7 @@ const CreateAccount = (props) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        const token = data.token;
+        const token = data.jwt;
         localStorage.token = token;
         dispatch({
           type: "SET_USER",
